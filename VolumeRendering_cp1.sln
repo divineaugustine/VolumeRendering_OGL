@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VolumeRendering_cp1", "VolumeRendering_cp1\VolumeRendering_cp1.vcxproj", "{B4DA2ED1-59FF-4522-ABC2-0D5865880CAE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B4DA2ED1-59FF-4522-ABC2-0D5865880CAE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B4DA2ED1-59FF-4522-ABC2-0D5865880CAE}.Debug|Win32.Build.0 = Debug|Win32
+		{B4DA2ED1-59FF-4522-ABC2-0D5865880CAE}.Release|Win32.ActiveCfg = Release|Win32
+		{B4DA2ED1-59FF-4522-ABC2-0D5865880CAE}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
