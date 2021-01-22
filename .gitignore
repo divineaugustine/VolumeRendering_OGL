@@ -26,3 +26,10 @@
 *.exe
 *.out
 *.app
+/Debug
+/ipch
+/VolumeRendering_cp1/Debug
+*.db
+/VolumeRendering_cp1.VC.VC.opendb
+/Release
+/VolumeRendering_cp1/Release

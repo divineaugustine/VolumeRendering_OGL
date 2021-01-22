@@ -1,7 +1,5 @@
 #include "StdAfx.h"
 #include "RendererHelper.h"
-#include "RawDataProcessor.h"
-#include "TranformationMgr.h"
 
 #pragma comment ( lib, "OpenGL32.lib" )
 #pragma comment ( lib, "glew32.lib" )
@@ -9,9 +7,7 @@
 
 GLfloat dOrthoSize = 1.0f;
 
-CRendererHelper::CRendererHelper(void) :
-    m_pRawDataProc(0)
-    ,m_pTransformMgr(0)
+CRendererHelper::CRendererHelper(void)
 {
 }
 
@@ -21,9 +17,7 @@ CRendererHelper::~CRendererHelper(void)
 }
 
 
-bool CRendererHelper::Initialize( HDC hContext_i, 
-    CRawDataProcessor* pRawDataProc_i, 
-    CTranformationMgr* pTransformationMgr_i )
+bool CRendererHelper::Initialize( HDC hContext_i )
 {
     //Setting up the dialog to support the OpenGL.
     PIXELFORMATDESCRIPTOR stPixelFormatDescriptor;
@@ -74,14 +68,11 @@ bool CRendererHelper::Initialize( HDC hContext_i,
         return false;
     }
 
-    m_pRawDataProc = pRawDataProc_i;
-    m_pTransformMgr = pTransformationMgr_i;
-
     return true;
 }
 
 
- void CRendererHelper::Resize( int nWidth_i, int nHeight_i )
+ void CRendererHelper::Resize(unsigned int nWidth_i, unsigned int nHeight_i )
  {
      //Find the aspect ratio of the window.
      GLdouble AspectRatio = ( GLdouble )(nWidth_i) / ( GLdouble )(nHeight_i ); 
@@ -122,7 +113,7 @@ bool CRendererHelper::Initialize( HDC hContext_i,
 
 void CRendererHelper::Render()
 {
-    float fFrameCount = (float)m_pRawDataProc->GetDepth();
+    float fFrameCount = (float)data.dim.z;
     glClear( GL_COLOR_BUFFER_BIT  | GL_DEPTH_BUFFER_BIT );
 
     glEnable( GL_ALPHA_TEST );
@@ -144,17 +135,17 @@ void CRendererHelper::Render()
     // Flipping of the y axis is done by giving a negative value in y axis.
     // This can be achieved either by changing the y co ordinates in -
     // texture mapping or by negative scaling of y axis
-    glScaled( (float)m_pRawDataProc->GetWidth()/(float)m_pRawDataProc->GetWidth(), 
-        -1.0f*(float)m_pRawDataProc->GetWidth()/(float)(float)m_pRawDataProc->GetHeight(), 
-        (float)m_pRawDataProc->GetWidth()/(float)m_pRawDataProc->GetDepth());
+    glScaled( (float)data.dim.x /(float)data.dim.x,
+        -1.0f*(float)data.dim.x /(float)(float)data.dim.y,
+        (float)data.dim.x /(float)data.dim.z);
 
     // Apply the user provided transformations
-    glMultMatrixd( m_pTransformMgr->GetMatrix());
+    glMultMatrixd(rotationMatrix.ptr());
     
     glTranslatef( -0.5f,-0.5f, -0.5f );
 
     glEnable(GL_TEXTURE_3D);
-    glBindTexture( GL_TEXTURE_3D,  m_pRawDataProc->GetTexture3D() );
+    glBindTexture( GL_TEXTURE_3D, data.texture);
     for ( float fIndx = -1.0f; fIndx <= 1.0f; fIndx+=0.01f )
     {
         glBegin(GL_QUADS);

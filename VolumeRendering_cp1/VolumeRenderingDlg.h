@@ -5,9 +5,9 @@
 #pragma once
 
 #include "RendererHelper.h"
+#include "TranformationMgr.h"
+#include "RawDataProcessor.h"
 
-class CRawDataProcessor;
-class CTranformationMgr;
 
 // CVolumeRenderingDlg dialog
 class CVolumeRenderingDlg : public CDialogEx
@@ -39,8 +39,8 @@ private:
     CRendererHelper m_Renderer;
     HDC mhContext;
     CPoint mRotReference;
-    CRawDataProcessor* m_pRawDataProc;
-    CTranformationMgr* m_pTransform;
+    CRawDataProcessor m_RawDataProc;
+    CTranformationMgr m_Transformation;
 
 public:
     afx_msg void OnSize(UINT nType, int cx, int cy);

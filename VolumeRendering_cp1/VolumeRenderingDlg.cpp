@@ -7,8 +7,6 @@
 #include "VolumeRenderingDlg.h"
 #include "afxdialogex.h"
 
-#include "RawDataProcessor.h"
-#include "TranformationMgr.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -55,8 +53,6 @@ CVolumeRenderingDlg::CVolumeRenderingDlg(CWnd* pParent /*=NULL*/)
     : CDialogEx(CVolumeRenderingDlg::IDD, pParent)
 {
     m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
-    m_pRawDataProc = new CRawDataProcessor;
-    m_pTransform = new CTranformationMgr;
 
 }
 
@@ -115,12 +111,13 @@ BOOL CVolumeRenderingDlg::OnInitDialog()
         exit(0);
     }
 
-    if( !m_pRawDataProc->ReadFile(  objOpenFile.GetPathName()/*_T( "head256x256x109.raw")*/, 
+    if( !m_RawDataProc.LoadFile(  objOpenFile.GetPathName()/*_T( "head256x256x109.raw")*/,
                                     256, 256, 109 ))
     {
         AfxMessageBox( _T( "Failed to read the data" ));
     }
 
+    m_Renderer.SetImage(m_RawDataProc.getData());
 
     return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -170,11 +167,12 @@ int CVolumeRenderingDlg::OnCreate(LPCREATESTRUCT lpCreateStruct)
         return -1;
 
     mhContext = ::GetDC( m_hWnd );
-    if( !m_Renderer.Initialize( mhContext, m_pRawDataProc, m_pTransform ))
+    if( !m_Renderer.Initialize( mhContext ))
     {
         ::MessageBox( 0, _T( "Failed to initialze the renderer !"), _T( "Renderer" ), MB_OK );
         exit(0);
     }
+
     return 0;
 }
 
@@ -191,7 +189,8 @@ void CVolumeRenderingDlg::OnMouseMove(UINT nFlags, CPoint point)
 {
     if( nFlags & MK_LBUTTON )
     {
-        m_pTransform->Rotate( mRotReference.y-point.y, mRotReference.x-point.x, 0 );
+        m_Transformation.Rotate( mRotReference.y-point.y, mRotReference.x-point.x, 0.0f );
+        m_Renderer.SetRotation(m_Transformation.GetMatrix());
         mRotReference = point;
     }
     CDialogEx::OnMouseMove(nFlags, point);

@@ -2,32 +2,37 @@
 class CRawDataProcessor
 {
 public:
+
+    struct Dimension
+    {
+        unsigned int x = {0};
+        unsigned int y = {0};
+        unsigned int z = {0};
+
+        unsigned int size()
+        {
+            return x*y*z;
+        }
+    };
+
+    struct Data
+    {
+        Dimension dim;
+        unsigned int texture = {0};
+    };
+
     CRawDataProcessor(void);
     virtual ~CRawDataProcessor(void);
     // Call this only after the open gl is initialized.
-    bool ReadFile(LPCTSTR lpDataFile_i, int nWidth_i, int nHeight_i, int nSlices_i );
-    int GetTexture3D()
+    bool LoadFile(LPCTSTR lpDataFile_i, unsigned int nWidth_i, unsigned int nHeight_i, unsigned int nSlices_i );
+
+    const Data& getData()
     {
-        return m_nTexId;
-    }
-    const int GetWidth()
-    {
-        return m_uImageWidth;
-    }
-    const int GetHeight()
-    {
-        return m_uImageHeight;
-    }
-    const int GetDepth()
-    {
-        return m_uImageCount;
+        return data;
     }
 
 private:
 
-    int m_uImageCount;
-    int m_uImageWidth;
-    int m_uImageHeight;
-    int m_nTexId;
+    Data data;
 };
 
