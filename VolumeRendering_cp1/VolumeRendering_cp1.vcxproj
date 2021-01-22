@@ -105,23 +105,23 @@
     <None Include="res\VolumeRendering_cp1.rc2" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="RawDataProcessor.h" />
-    <ClInclude Include="RendererHelper.h" />
+    <ClInclude Include="Imaging\RawDataProcessor.h" />
+    <ClInclude Include="Imaging\RendererHelper.h" />
+    <ClInclude Include="Imaging\TranformationMgr.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="TranformationMgr.h" />
     <ClInclude Include="VolumeRenderingDlg.h" />
     <ClInclude Include="VolumeRendering_cp1.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="RawDataProcessor.cpp" />
-    <ClCompile Include="RendererHelper.cpp" />
+    <ClCompile Include="Imaging\RawDataProcessor.cpp" />
+    <ClCompile Include="Imaging\RendererHelper.cpp" />
+    <ClCompile Include="Imaging\TranformationMgr.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="TranformationMgr.cpp" />
     <ClCompile Include="VolumeRenderingDlg.cpp" />
     <ClCompile Include="VolumeRendering_cp1.cpp" />
   </ItemGroup>

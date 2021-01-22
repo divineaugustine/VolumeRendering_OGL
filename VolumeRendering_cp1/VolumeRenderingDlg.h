@@ -1,12 +1,11 @@
-
 // VolumeRenderingDlg.h : header file
 //
 
 #pragma once
 
-#include "RendererHelper.h"
-#include "TranformationMgr.h"
-#include "RawDataProcessor.h"
+#include "Imaging/RendererHelper.h"
+#include "Imaging/TranformationMgr.h"
+#include "Imaging/RawDataProcessor.h"
 
 
 // CVolumeRenderingDlg dialog
@@ -36,8 +35,8 @@ protected:
 
 private:
 
-    CRendererHelper m_Renderer;
     HDC mhContext;
+    CRendererHelper m_Renderer;
     CPoint mRotReference;
     CRawDataProcessor m_RawDataProc;
     CTranformationMgr m_Transformation;

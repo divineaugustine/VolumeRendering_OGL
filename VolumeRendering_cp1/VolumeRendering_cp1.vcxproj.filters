@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Imaging">
+      <UniqueIdentifier>{b58327f5-49ef-46f3-94ed-7244ecbb2774}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -39,14 +42,14 @@
     <ClInclude Include="Resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="RendererHelper.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Imaging\RawDataProcessor.h">
+      <Filter>Imaging</Filter>
     </ClInclude>
-    <ClInclude Include="TranformationMgr.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Imaging\RendererHelper.h">
+      <Filter>Imaging</Filter>
     </ClInclude>
-    <ClInclude Include="RawDataProcessor.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Imaging\TranformationMgr.h">
+      <Filter>Imaging</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -59,14 +62,14 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="RendererHelper.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Imaging\RawDataProcessor.cpp">
+      <Filter>Imaging</Filter>
     </ClCompile>
-    <ClCompile Include="TranformationMgr.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Imaging\RendererHelper.cpp">
+      <Filter>Imaging</Filter>
     </ClCompile>
-    <ClCompile Include="RawDataProcessor.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Imaging\TranformationMgr.cpp">
+      <Filter>Imaging</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
